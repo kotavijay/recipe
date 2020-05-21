@@ -1,0 +1,15 @@
+/Users/kotas/Documents/intellij-workspace/recipe/src/main/java/com/sample/recipe/domain/UnitOfMeasure.java
+/Users/kotas/Documents/intellij-workspace/recipe/src/main/java/com/sample/recipe/serivce/RecipeService.java
+/Users/kotas/Documents/intellij-workspace/recipe/src/main/java/com/sample/recipe/domain/Notes.java
+/Users/kotas/Documents/intellij-workspace/recipe/src/main/java/com/sample/recipe/bootstarp/Bootstrap.java
+/Users/kotas/Documents/intellij-workspace/recipe/src/main/java/com/sample/recipe/RecipeApplication.java
+/Users/kotas/Documents/intellij-workspace/recipe/src/main/java/com/sample/recipe/domain/Recipe.java
+/Users/kotas/Documents/intellij-workspace/recipe/src/main/java/com/sample/recipe/serivce/RecipeServiceImpl.java
+/Users/kotas/Documents/intellij-workspace/recipe/src/main/java/com/sample/recipe/domain/Category.java
+/Users/kotas/Documents/intellij-workspace/recipe/src/main/java/com/sample/recipe/repository/CategoryRepository.java
+/Users/kotas/Documents/intellij-workspace/recipe/src/main/java/com/sample/recipe/controller/IndexController.java
+/Users/kotas/Documents/intellij-workspace/recipe/src/main/java/com/sample/recipe/repository/UnitOfMeasureRepository.java
+/Users/kotas/Documents/intellij-workspace/recipe/src/main/java/com/sample/recipe/domain/Difficulty.java
+/Users/kotas/Documents/intellij-workspace/recipe/src/main/java/com/sample/recipe/ServletInitializer.java
+/Users/kotas/Documents/intellij-workspace/recipe/src/main/java/com/sample/recipe/repository/RecipeRepository.java
+/Users/kotas/Documents/intellij-workspace/recipe/src/main/java/com/sample/recipe/domain/Ingredient.java
