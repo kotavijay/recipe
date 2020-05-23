@@ -4,17 +4,20 @@ import com.sample.recipe.domain.*;
 import com.sample.recipe.repository.CategoryRepository;
 import com.sample.recipe.repository.RecipeRepository;
 import com.sample.recipe.repository.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Component
+@Slf4j
 public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired
@@ -27,11 +30,14 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
     private UnitOfMeasureRepository unitOfMeasureRepository;
 
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
+        log.debug("Entered into :: " + Bootstrap.class + " :: onApplicationEvent()");
         recipeRepository.saveAll(getRecipes());
     }
 
     private List<Recipe> getRecipes() {
+        log.debug("Entered into :: " + Bootstrap.class + " :: getRecipes()");
         List<Recipe> recipes = new ArrayList<>();
 
 //        Get UnitOfMeasures
@@ -137,26 +143,22 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
                 "Quick guacamole: For a very quick guacamole just take a 1/4 cup of salsa and mix it in with your mashed avocados.\n" +
                 "Don’t have enough avocados? To extend a limited supply of avocados, add either sour cream or cottage cheese to your " +
                 "guacamole dip. Purists may be horrified, but so what? It tastes great.");
-        guacamoleNotes.setRecipe(guacamoleRecipe);
 
+//        guacamoleNotes.setRecipe(guacamoleRecipe);
         guacamoleRecipe.setNotes(guacamoleNotes);
-        guacamoleRecipe.getIngredient().add(new Ingredient("ripe avocados", new BigDecimal(2), eachUom, guacamoleRecipe));
-        guacamoleRecipe.getIngredient().add(new Ingredient("teaspoon of salt, more to taste", new BigDecimal(1 / 4), teaspoonUom,
-                guacamoleRecipe));
-        guacamoleRecipe.getIngredient().add(new Ingredient("fresh lime juice or lemon juice", new BigDecimal(1), tablespoonUom,
-                guacamoleRecipe));
-        guacamoleRecipe.getIngredient().add(new Ingredient("minced red onion or thinly sliced green onion", new BigDecimal(2),
-                tablespoonUom, guacamoleRecipe));
-        guacamoleRecipe.getIngredient().add(new Ingredient("serrano chilies, stems and seeds removed, minced", new BigDecimal(2), eachUom
-                , guacamoleRecipe));
-        guacamoleRecipe.getIngredient().add(new Ingredient("cilantro (leaves and tender stems), finely chopped", new BigDecimal(2),
-                tablespoonUom, guacamoleRecipe));
-        guacamoleRecipe.getIngredient().add(new Ingredient("freshly grated black pepper", new BigDecimal(1), dashUom, guacamoleRecipe));
-        guacamoleRecipe.getIngredient().add(new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(1 / 2), eachUom
-                , guacamoleRecipe));
-        guacamoleRecipe.getIngredient().add(new Ingredient("Red radishes or jicama, to garnish", new BigDecimal(1), eachUom,
-                guacamoleRecipe));
-        guacamoleRecipe.getIngredient().add(new Ingredient("Tortilla chips, to serve", new BigDecimal(1), eachUom, guacamoleRecipe));
+
+        guacamoleRecipe.addIngredient(new Ingredient("ripe avocados", new BigDecimal(2), eachUom));
+        guacamoleRecipe.addIngredient(new Ingredient("teaspoon of salt, more to taste", new BigDecimal(1 / 4), teaspoonUom));
+        guacamoleRecipe.addIngredient(new Ingredient("fresh lime juice or lemon juice", new BigDecimal(1), tablespoonUom));
+        guacamoleRecipe.addIngredient(new Ingredient("minced red onion or thinly sliced green onion", new BigDecimal(2),
+                tablespoonUom));
+        guacamoleRecipe.addIngredient(new Ingredient("serrano chilies, stems and seeds removed, minced", new BigDecimal(2), eachUom));
+        guacamoleRecipe.addIngredient(new Ingredient("cilantro (leaves and tender stems), finely chopped", new BigDecimal(2),
+                tablespoonUom));
+        guacamoleRecipe.addIngredient(new Ingredient("freshly grated black pepper", new BigDecimal(1), dashUom));
+        guacamoleRecipe.addIngredient(new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(1 / 2), eachUom));
+        guacamoleRecipe.addIngredient(new Ingredient("Red radishes or jicama, to garnish", new BigDecimal(1), eachUom));
+        guacamoleRecipe.addIngredient(new Ingredient("Tortilla chips, to serve", new BigDecimal(1), eachUom));
 
         guacamoleRecipe.getCategories().add(americanCategory);
         guacamoleRecipe.getCategories().add(mexicanCategory);

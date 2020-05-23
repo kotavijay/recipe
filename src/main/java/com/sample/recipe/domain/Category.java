@@ -1,10 +1,15 @@
 package com.sample.recipe.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Setter
+@Getter
 public class Category {
 
     @Id
@@ -14,24 +19,5 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories")
     private Set<Recipe> recipes = new HashSet<>();
-
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    public Set<Recipe> getRecipes() {
-        return recipes;
-    }
-    public void setRecipes(Set<Recipe> recipes) {
-        this.recipes = recipes;
-    }
 
 }
